@@ -3,135 +3,691 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizon Web Development</title>
+    <title>Horizon Web Design & Digital Services</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #38bdf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+        /* --- GLOBAL PREMIUM DARK THEME --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
+            background-color: #0b0f17;
+            color: #f1f5f9;
+            line-height: 1.6;
+            padding-bottom: 100px;
+            overflow-x: hidden;
         }
 
+        /* --- HERO HEADER --- */
         header {
             text-align: center;
-            padding: 100px 20px 60px 20px;
+            padding: 5rem 2rem 3rem 2rem;
+            background: radial-gradient(circle at top, #111827 0%, #0b0f17 70%);
+            border-bottom: 2px solid #10b981;
         }
 
         header h1 {
-            color: var(--accent-color);
             font-size: 3rem;
-            margin-bottom: 10px;
+            font-weight: 800;
+            color: #10b981;
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
         }
 
         header p {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            max-width: 600px;
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 650px;
             margin: 0 auto;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 2rem 1.5rem;
+        }
+
+        /* ================= MAIN DASHBOARD VIEW ================= */
+        #dashboard-view {
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .dashboard-title {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #e2e8f0;
+            margin-bottom: 2.5rem;
+            font-weight: 600;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
-        .service-card {
-            background-color: var(--card-bg);
-            padding: 30px;
+        .service-card-btn {
+            background: linear-gradient(145deg, #111827 0%, #1f2937 100%);
+            border: 2px solid #374151;
             border-radius: 12px;
-            border: 1px solid #334155;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            padding: 2rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
+        .service-card-btn:hover {
+            border-color: #10b981;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.15);
         }
 
-        .service-card h3 {
-            color: var(--accent-color);
-            margin-top: 0;
-            font-size: 1.4rem;
+        .service-card-btn .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        .service-card p {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 0;
+        .service-card-btn h2 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
         }
 
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
+        .service-card-btn p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .service-card-btn .explore-txt {
+            font-size: 0.9rem;
+            color: #10b981;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: transform 0.2s ease, background-color 0.2s ease;
+            gap: 0.4rem;
         }
 
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
-            background-color: #128C7E;
+        /* ================= DEDICATED DETAILS PAGE VIEW ================= */
+        .details-view {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .back-btn {
+            background-color: #1f2937;
+            color: #cbd5e1;
+            border: 1px solid #4b5563;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #374151;
+            color: #ffffff;
+            border-color: #94a3b8;
+        }
+
+        .details-header {
+            margin-bottom: 3rem;
+        }
+
+        .details-header h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .details-header .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .price-card {
+            background: #111827;
+            border: 2px solid #374151;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border-color: #10b981;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.08);
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #059669, #10b981);
+            color: #fff;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .tier-title {
+            font-size: 1.4rem;
+            color: #f8fafc;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-desc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-block {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #374151;
+        }
+
+        .price-block .amount {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #10b981;
+        }
+
+        .price-block .duration {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .features-list li {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: 900;
+        }
+
+        .cta-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: #1f2937;
+            color: #f1f5f9;
+            border: 2px solid #4b5563;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        .featured .cta-btn {
+            background: #10b981;
+            color: #0b0f17;
+            border: none;
+        }
+
+        .featured .cta-btn:hover {
+            background: #059669;
+            color: white;
+        }
+
+        /* --- FLOATING WHATSAPP BUTTON --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            width: 65px;
+            height: 65px;
+            background: #00e676;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 9999;
+            box-shadow: 0 8px 24px rgba(0, 230, 118, 0.4);
+            animation: levitate 3.5s ease-in-out infinite;
+        }
+
+        .whatsapp-icon {
+            width: 34px;
+            height: 34px;
+            fill: currentColor;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes levitate {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Horizon Web Development</h1>
-        <p>Crafting clean, responsive websites, managing digital projects, and designing seamless user experiences.</p>
+        <h1>Horizon Digital Services</h1>
+        <p>Premium frontend web development, content writing, structural in-game Minecraft builds, and professional social media production. High-quality work tailored to your budget.</p>
     </header>
 
     <div class="container">
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Web Development</h3>
-                <p>Building fast, custom static pages and immersive modern web applications tailored to your business needs.</p>
+        
+        <!-- ================= MAIN DASHBOARD VIEW ================= -->
+        <div id="dashboard-view">
+            <p class="dashboard-title">Select a service category below to view packages and request a custom quote:</p>
+            
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card-btn" onclick="openPage('web-dev-view')">
+                    <div>
+                        <div class="icon">🖥️</div>
+                        <h2>Web Development</h2>
+                        <p>Clean, responsive frontend single-page layouts, highly interactive personal portfolios, landing structures, and modern interface styling.</p>
+                    </div>
+                    <span class="explore-txt">View Tiers & Options &rarr;</span>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card-btn" onclick="openPage('minecraft-view')">
+                    <div>
+                        <div class="icon">🎮</div>
+                        <h2>Minecraft In-Game Services</h2>
+                        <p>Manual high-volume resource mining, custom structural base building, server spawn designs, and wide-scale world terraforming layouts.</p>
+                    </div>
+                    <span class="explore-txt">View Tiers & Options &rarr;</span>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card-btn" onclick="openPage('ads-view')">
+                    <div>
+                        <div class="icon">📢</div>
+                        <h2>Ad & Banner Making</h2>
+                        <p>High-conversion commercial promo graphics, custom digital asset layouts, and tailored banners optimized for click-through rates.</p>
+                    </div>
+                    <span class="explore-txt">View Tiers & Options &rarr;</span>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card-btn" onclick="openPage('scripts-view')">
+                    <div>
+                        <div class="icon">✍️</div>
+                        <h2>Script Writing</h2>
+                        <p>High-retention hooks and custom narrative structures engineered for TikTok, Instagram Reels, YouTube Shorts, or full documentary essays.</p>
+                    </div>
+                    <span class="explore-txt">View Tiers & Options &rarr;</span>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="service-card-btn" onclick="openPage('subs-view')">
+                    <div>
+                        <div class="icon">💬</div>
+                        <h2>Subtitles & Captions</h2>
+                        <p>Dynamic, trendy kinetic pop-up captions with emphasis text coloring, exact speech-to-audio sync, and standalone .SRT file compiling.</p>
+                    </div>
+                    <span class="explore-txt">View Tiers & Options &rarr;</span>
+                </div>
             </div>
-            <div class="service-card">
-                <h3>Project Management</h3>
-                <p>Keeping timelines organized, workflows smooth, and ensuring project deliveries stay on track from start to finish.</p>
+
+            <!-- ================= PORTFOLIO SHOWCASE ================= -->
+            <div style="margin-top: 5rem; border-top: 1px solid #1f2937; padding-top: 4rem;">
+                <h2 style="text-align: center; font-size: 2rem; color: #ffffff; margin-bottom: 0.5rem;">Featured Projects</h2>
+                <p style="text-align: center; color: #94a3b8; margin-bottom: 3rem; font-size: 1rem;">A glimpse of recent custom layouts and digital builds successfully delivered.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <!-- Project 1 -->
+                    <div style="background: #111827; border: 1px solid #1f2937; border-radius: 12px; overflow: hidden; transition: 0.3s;" onmouseover="this.style.borderColor='#10b981'" onmouseout="this.style.borderColor='#1f2937'">
+                        <div style="background: #1f2937; height: 180px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 3rem;">🌐</div>
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: #ffffff; font-size: 1.2rem; margin-bottom: 0.5rem;">3D Web Sandbox Environment</h3>
+                            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem;">An interactive, custom Voxel-based grid simulation optimized completely for modern desktop browsers using lightweight script architecture.</p>
+                            <span style="color: #10b981; font-size: 0.85rem; font-weight: 700;">Interactive Demo Component</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div style="background: #111827; border: 1px solid #1f2937; border-radius: 12px; overflow: hidden; transition: 0.3s;" onmouseover="this.style.borderColor='#10b981'" onmouseout="this.style.borderColor='#1f2937'">
+                        <div style="background: #1f2937; height: 180px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 3rem;">🏰</div>
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: #ffffff; font-size: 1.2rem; margin-bottom: 0.5rem;">Custom Factions Server Spawn</h3>
+                            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem;">A massive, fully detailed medieval trade hub designed from scratch with intricate detailing for community marketplace servers.</p>
+                            <span style="color: #10b981; font-size: 0.85rem; font-weight: 700;">Structural Architectural Layout</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="service-card">
-                <h3>UI/UX & Graphics</h3>
-                <p>Designing modern layouts and high-quality branding assets that capture attention and look great on any screen device.</p>
+
+            <!-- ================= HOW IT WORKS ================= -->
+            <div style="margin-top: 5rem; background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 3rem 2rem;">
+                <h2 style="text-align: center; font-size: 2rem; color: #ffffff; margin-bottom: 3rem;">How We Work Together</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; text-align: center;">
+                    <div>
+                        <div style="background: rgba(16, 185, 129, 0.1); color: #10b981; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; font-weight: 800; font-size: 1.2rem; border: 1px solid #10b981;">1</div>
+                        <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.1rem;">Inquire & Share Details</h3>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Click "Discuss Pricing" on any plan. It opens a WhatsApp window with your selected service tier ready to go.</p>
+                    </div>
+                    <div>
+                        <div style="background: rgba(16, 185, 129, 0.1); color: #10b981; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; font-weight: 800; font-size: 1.2rem; border: 1px solid #10b981;">2</div>
+                        <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.1rem;">Get an Affordable Deal</h3>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">We talk out a custom price structure that respects what you are comfortable spending, while keeping quality intact.</p>
+                    </div>
+                    <div>
+                        <div style="background: rgba(16, 185, 129, 0.1); color: #10b981; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; font-weight: 800; font-size: 1.2rem; border: 1px solid #10b981;">3</div>
+                        <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.1rem;">Handoff & Review</h3>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">We safely deliver the backend project files, handle configuration tasks, or log into coordinates with full revision tracking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= FAQ SECTION ================= -->
+            <div style="margin-top: 5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <h2 style="text-align: center; font-size: 2rem; color: #ffffff; margin-bottom: 2.5rem;">Frequently Asked Questions</h2>
+                
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="background: #111827; border: 1px solid #1f2937; border-radius: 8px; padding: 1.2rem 1.5rem;">
+                        <h3 style="color: #ffffff; font-size: 1.05rem; margin-bottom: 0.5rem;">Are prices negotiable?</h3>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Yes, completely. We understand every project is different. Just let us know your requirements and we will build a custom package that matches your specific budget.</p>
+                    </div>
+                    <div style="background: #111827; border: 1px solid #1f2937; border-radius: 8px; padding: 1.2rem 1.5rem;">
+                        <h3 style="color: #ffffff; font-size: 1.05rem; margin-bottom: 0.5rem;">Will I have to pay monthly hosting fees for my web project?</h3>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">No! For all frontend setups, we host your site on professional developer networks with built-in free subdomains and zero operational monthly costs.</p>
+                    </div>
+                    <div style="background: #111827; border: 1px solid #1f2937; border-radius: 8px; padding: 1.2rem 1.5rem;">
+                        <h3 style="color: #ffffff; font-size: 1.05rem; margin-bottom: 0.5rem;">How are in-game Minecraft builds delivered securely?</h3>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">We join your target server manually to build out your custom base or terraform elements. For standalone worlds, we compile the directory or send clean schematics files directly.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- End of Dashboard View -->
+
+
+        <!-- ================= VIEW 1: WEB DEVELOPMENT ================= -->
+        <div id="web-dev-view" class="details-view">
+            <button class="back-btn" onclick="closePage()">&larr; Back to Services</button>
+            <div class="details-header">
+                <h2>🖥️ Web Development</h2>
+                <p class="subtitle">Beautiful interactive frontend development matching modern UI components to responsive web grids.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3 class="tier-title">Standard Portfolio</h3>
+                    <p class="tier-desc">Clean single-page responsive designs showcasing individual work history or localized setups.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Timeline: 4-7 Days</span></div>
+                    <ul class="features-list">
+                        <li>Up to 3 Custom Dynamic Sections</li>
+                        <li>Responsive HTML/CSS/JS Architecture</li>
+                        <li>Mobile, Tablet, and Desktop Optimized</li>
+                        <li>Instant Contact Form / Direct Link Actions</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Web%20Development%20-%20Standard%20Portfolio]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="badge">Popular</div>
+                    <h3 class="tier-title">Growth Business Landing</h3>
+                    <p class="tier-desc">High-end frontend promotional funnels built to transform casual traffic into active clients.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Timeline: 1-2 Weeks</span></div>
+                    <ul class="features-list">
+                        <li>Multi-Section Professional Landing Page</li>
+                        <li>Premium UI/UX Transitions & Layout Systems</li>
+                        <li>Inbound Lead Capture Engineering</li>
+                        <li>SEO & Page Loading Speed Optimization</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Web%20Development%20-%20Growth%20Business%20Landing]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+                <div class="price-card">
+                    <h3 class="tier-title">Premium Custom Interactive</h3>
+                    <p class="tier-desc">Intricate canvas environments, complex animations, or extensive asset portfolios.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Timeline: 3-4 Weeks</span></div>
+                    <ul class="features-list">
+                        <li>Fully Bespoke Advanced Interactive Framework</li>
+                        <li>Complex Interactive Animations & Canvas Environments</li>
+                        <li>Complete Tailored Core Design Assets</li>
+                        <li>1-Month Technical Launch Maintenance Support</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Web%20Development%20-%20Premium%20Custom%20Interactive]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
             </div>
         </div>
+
+        <!-- ================= VIEW 2: MINECRAFT SERVICES ================= -->
+        <div id="minecraft-view" class="details-view">
+            <button class="back-btn" onclick="closePage()">&larr; Back to Services</button>
+            <div class="details-header">
+                <h2>🎮 Minecraft In-Game Services</h2>
+                <p class="subtitle">Manual grind-work, bespoke structures, and massive world alterations executed straight inside the game.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3 class="tier-title">Resource Gathering</h3>
+                    <p class="tier-desc">Outsource the survival grind. Get huge bulk quantities of building components or valuables manually mined.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Timeline: 1-2 Days</span></div>
+                    <ul class="features-list">
+                        <li>Bulk Mining Blocks (Deepslate, Stone, Wood, Sand, Quartz)</li>
+                        <li>Rare Mineral Grinding (Diamonds, Netherite, Ancient Debris)</li>
+                        <li>Ideal for Factions Players & Hardcore Survival Servers</li>
+                        <li>Secure handoff into designated base chests</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Minecraft%20Services%20-%20Resource%20Gathering]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="badge">Most Ordered</div>
+                    <h3 class="tier-title">Custom Builds & Spawns</h3>
+                    <p class="tier-desc">Beautiful, highly detailed structural architectural components built directly inside your world grids.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Timeline: 3-5 Days</span></div>
+                    <ul class="features-list">
+                        <li>Bespoke Survival Mega-Bases, Castles, or Modern Layouts</li>
+                        <li>Highly Detailed Server Spawns & Economy Marketplace Shops</li>
+                        <li>Nether Hub Transport Systems & Custom Village Revamps</li>
+                        <li>Immersive Interior & Exterior Creative Detailing</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Minecraft%20Services%20-%20Custom%20Builds%20%26%20Spawns]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+                <div class="price-card">
+                    <h3 class="tier-title">Mega-Projects & Terraforming</h3>
+                    <p class="tier-desc">Large scale structural modifications, massive terrain clearing, or structural replication from schematics.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Timeline: 1-2 Weeks</span></div>
+                    <ul class="features-list">
+                        <li>Massive Land Clearing (Draining Ocean Monuments, Flattening Peaks)</li>
+                        <li>Full-Scale Survival Mega-Structures From Concept Design</li>
+                        <li>Custom Natural Biome Redesigning & Organic Editing</li>
+                        <li>Replicating intricate structures manually via image reference</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Minecraft%20Services%20-%20Mega-Projects%20%26%20Terraforming]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 3: AD MAKING ================= -->
+        <div id="ads-view" class="details-view">
+            <button class="back-btn" onclick="closePage()">&larr; Back to Services</button>
+            <div class="details-header">
+                <h2>📢 Ad & Banner Making</h2>
+                <p class="subtitle">Crisp visual ad layouts configured around engaging presentation models.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3 class="tier-title">Single Social Banner</h3>
+                    <p class="tier-desc">Eye-catching static design layouts built to stand out on crowded social feeds.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Per Layout</span></div>
+                    <ul class="features-list">
+                        <li>1 High-Res Social Media Asset / Banner Post</li>
+                        <li>Custom Palette Balancing & Corporate Logo Integration</li>
+                        <li>Optimized for Target Ratios (FB, Instagram, or X)</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Ad%20%26%20Banner%20Making%20-%20Single%20Social%20Banner]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="badge">Recommended</div>
+                    <h3 class="tier-title">Campaign Ad Bundle</h3>
+                    <p class="tier-desc">A matching set of structured promotional assets to cover your entire campaign launch.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Per Bundle</span></div>
+                    <ul class="features-list">
+                        <li>3 Unique Design Variant Layout Adjustments</li>
+                        <li>Full Story, Main Feed, and Wide Banner Format Resizing</li>
+                        <li>High-Impact Call-To-Action Placement Mapping</li>
+                        <li>Fully Packaged Source Asset Files Provided</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Ad%20%26%20Banner%20Making%20-%20Campaign%20Ad%20Bundle]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 4: SCRIPT WRITING ================= -->
+        <div id="scripts-view" class="details-view">
+            <button class="back-btn" onclick="closePage()">&larr; Back to Services</button>
+            <div class="details-header">
+                <h2>✍️ Script Writing</h2>
+                <p class="subtitle">Persuasive narrative structures built specifically to boost average audience view times.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3 class="tier-title">Short-Form Script</h3>
+                    <p class="tier-desc">Fast-paced hook configurations to stop users from scrolling past within 3 seconds.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Per Script</span></div>
+                    <ul class="features-list">
+                        <li>Tailored for TikTok, IG Reels, or YouTube Shorts Pacing</li>
+                        <li>Up to 60 Seconds of High-Engagement Spoken Copy</li>
+                        <li>Includes On-Screen Action & Sound Effect (SFX) Cues</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Script%20Writing%20-%20Short-Form%20Script]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="badge">Popular</div>
+                    <h3 class="tier-title">Long-Form Video Essay</h3>
+                    <p class="tier-desc">Deeply researched script pacing built to maintain engagement over extensive timelines.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">5 to 10 Min Run Time</span></div>
+                    <ul class="features-list">
+                        <li>Complete Topic Background Information Verification</li>
+                        <li>Structured Multi-Act Story Pacing & B-Roll Timing Prompts</li>
+                        <li>Seamlessly Linked Sponsorship & Channel Call-To-Actions</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I%20need%20the%20[Script%20Writing%20-%20Long-Form%20Video%20Essay]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 5: SUBTITLES & CAPTIONS ================= -->
+        <div id="subs-view" class="details-view">
+            <button class="back-btn" onclick="closePage()">&larr; Back to Services</button>
+            <div class="details-header">
+                <h2>💬 Subtitles & Captions</h2>
+                <p class="subtitle">Clean kinetic typography matching fast word pacing directly to speaker patterns.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3 class="tier-title">Short-Form Pop Captions</h3>
+                    <p class="tier-desc">Trendy animated on-screen short form subtitling overlays built for viral viewing metrics.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Per Short/Reel</span></div>
+                    <ul class="features-list">
+                        <li>Modern Pop-up Style Text Layouts (Emojis + Color Highlights)</li>
+                        <li>Flawless Audio-to-Text Milestone Word Tracking</li>
+                        <li>Rapid 24-Hour Timeline Delivery Options</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Subtitles%20%26%20Captions%20-%20Short-Form%20Pop%20Captions]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="badge">Bulk Deal</div>
+                    <h3 class="tier-title">Full Video Transcription Subtitles</h3>
+                    <p class="tier-desc">Clean, accurate, perfectly timed readable subtitles for extensive videos or tutorials.</p>
+                    <div class="price-block"><span class="amount">Discuss Pricing</span><span class="duration">Up to 15 Mins</span></div>
+                    <ul class="features-list">
+                        <li>High-Readability, Standard Content Subtitle Configurations</li>
+                        <li>Hardcoded Video Tracks or Exported Standalone .SRT Files</li>
+                        <li>Complete Grammar Filtering & Background Noise Cleanup</li>
+                    </ul>
+                    <a href="https://wa.me/9779766562464?text=Hi!%20I'm%20interested%20in%20the%20[Subtitles%20%26%20Captions%20-%20Full%20Video%20Transcription]%20package.%20Let's%20discuss%20a%20reasonable%20pricing%20structure." class="cta-btn" target="_blank">Discuss Pricing</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Swap out the number below to your actual WhatsApp phone number -->
-    <a href="https://wa.me/9779766562464?text=Hello!%20I%20saw%20your%20website%20and%20wanted%20to%20discuss%20a%20project." 
-       class="whatsapp-btn" 
-       target="_blank">
-        💬 Chat on WhatsApp
+    <!-- FLOATING WHATSAPP ICON -->
+    <a href="https://wa.me/9779766562464?text=Hello!%20I%20saw%20your%20website%20and%20wanted%20to%20discuss%20a%20project.%20Can%20I%20get%20a%20price%20quote?" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Chat on WhatsApp">
+       <svg viewBox="0 0 32 32" class="whatsapp-icon">
+           <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825.733 5.483 2.01 7.797l-2.01 7.346 7.519-1.973c2.235 1.178 4.772 1.83 7.481 1.83 8.837 0 16-7.163 16-16s-7.163-16-16-16zm8.92 21.87c-.368 1.036-1.812 1.89-2.49 1.954-.627.059-1.442.093-2.316-.188-5.263-1.696-8.736-6.994-8.995-7.342-.26-.348-2.092-2.784-2.092-5.309 0-2.525 1.32-3.766 1.787-4.264.468-.5.1.01.62-.01.4-.015.6.012.78.04.18.028.43.045.67.625.26.623.88 2.14.96 2.3.08.16.13.348.02.564-.1.217-.16.353-.32.54-.16.186-.34.316-.48.495-.16.182-.33.38-.14.71.19.33.84 1.385 1.8 2.24 1.23 1.1 2.27 1.44 2.59 1.6.32.16.51.13.7-.09.19-.22.82-.95.1.04-.13.14-.26.3-.39.46.16.32.84 1.11 1.56 1.47.72.36 1.21.3 1.39.22.18-.08 1.15-.47 1.31-.92.16-.45.16-.84.11-.92-.05-.08-.18-.13-.39-.24z"/>
+       </svg>
     </a>
+
+    <!-- PAGE VIEW NAVIGATION SCRIPT -->
+    <script>
+        function openPage(targetViewId) {
+            document.getElementById('dashboard-view').style.display = 'none';
+
+            const allDetailsViews = document.querySelectorAll('.details-view');
+            allDetailsViews.forEach(view => view.style.display = 'none');
+
+            document.getElementById(targetViewId).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closePage() {
+            const allDetailsViews = document.querySelectorAll('.details-view');
+            allDetailsViews.forEach(view => view.style.display = 'none');
+
+            document.getElementById('dashboard-view').style.display = 'block';
+        }
+    </script>
 
 </body>
 </html>
